@@ -1,7 +1,7 @@
 import torch
 import pytorch_spline
 
-class ir_curve:
+class IR_Curve:
 
     def __init__(self, time_pillars, rates):
 
@@ -18,3 +18,9 @@ class ir_curve:
     def discount_factors(self, time_pillars):
 
         return torch.exp(-self.interpolator.evaluate_spline(time_pillars))
+    
+'''
+class IR_Swap:
+
+    def __init__(self, ttm, 
+'''
