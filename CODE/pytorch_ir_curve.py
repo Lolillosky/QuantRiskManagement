@@ -1,6 +1,7 @@
 import torch
 import pytorch_spline
 import numpy as np
+from scipy.optimize import fsolve
 
 class IR_Curve:
 
