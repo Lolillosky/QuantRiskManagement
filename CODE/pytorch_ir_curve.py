@@ -53,8 +53,8 @@ class CurveFitter:
         
     def residuals(self, x):
 
-        curve = pytorch_ir_curve.IR_Curve(torch.tensor(self.time_pillars), torch.tensor(x))
-        swap = [pytorch_ir_curve.IR_Swap(0, t, self.delta_t) for t in self.time_pillars]
+        curve = IR_Curve(torch.tensor(self.time_pillars), torch.tensor(x))
+        swap = [IR_Swap(0, t, self.delta_t) for t in self.time_pillars]
 
         return [s.calc_par_rate(curve).item() for s in swap] - self.swap_rates
     
