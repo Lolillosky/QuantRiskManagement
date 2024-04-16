@@ -11,11 +11,11 @@ def bachelier_option_formula(forward, strike, vol, ttm, iscall):
 
         if iscall:
 
-            return (forward - strike) * normal_dist.cdf(d) + vol * torch.sqrt(ttm) * normal_dist.pdf(d)
+            return (forward - strike) * normal_dist.cdf(d) + vol * torch.sqrt(ttm) * torch.exp(normal_dist.log_prob(d))
         
         else:
 
-            return (strike - forward) * normal_dist.cdf(-d) + vol * torch.sqrt(ttm) * normal_dist.pdf(d)
+            return (strike - forward) * normal_dist.cdf(-d) + vol * torch.sqrt(ttm) * torch.exp(normal_dist.log_prob(d))
 
     elif (ttm == 0):
 
