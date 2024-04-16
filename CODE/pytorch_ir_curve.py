@@ -43,7 +43,7 @@ class IR_Swap:
 
         PV01 = self.calc_PV01(ir_curve)
 
-        return (1 - ir_curve.discount_factors(self.end_t)) / PV01
+        return (ir_curve.discount_factors(self.star_t) - ir_curve.discount_factors(self.end_t)) / PV01
     
 class CurveFitter:
     def __init__(self, time_pillars, swap_rates, delta_t):
