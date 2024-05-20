@@ -1,6 +1,21 @@
 from scipy.stats import norm
 import numpy as np
 
+def forward_price(Spot, Strike, rate, div, TTM):
+    """
+    Calculate the forward price of an asset.
+
+    Args:
+    - Spot (float): Current price of the asset.
+    - rate (float): Risk-free interest rate, as a decimal.
+    - div (float): Dividend yield of the asset, as a decimal.
+    - TTM (float): Time to maturity of the forward contract, in years.
+
+    Returns:
+    - float: The forward price of the asset.
+    """
+    return Spot * np.exp((rate - div) * TTM) - Strike * np.exp(rate * TTM)
+
 def BlackScholes(Spot, Strike, TTM, rate, div, Vol, IsCall):
     """
     Calculate the Black-Scholes option pricing model.
