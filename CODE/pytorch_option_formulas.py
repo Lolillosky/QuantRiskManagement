@@ -58,6 +58,22 @@ def BlackScholes(Spot, Strike, TTM, rate, div, Vol, IsCall):
             return torch.maximum(Spot - Strike, torch.tensor(0.0))
         else:  # Intrinsic value for put
             return torch.maximum(-Spot + Strike, torch.tensor(0.0))
+        
+def forward_price(Spot, Strike, rate, div, TTM):
+    """
+    Calculate the forward price of an asset.
+
+    Args:
+    - Spot (float): Current price of the asset.
+    - rate (float): Risk-free interest rate, as a decimal.
+    - div (float): Dividend yield of the asset, as a decimal.
+    - TTM (float): Time to maturity of the forward contract, in years.
+
+    Returns:
+    - float: The forward price of the asset.
+    """
+    return Spot * torch.exp((rate - div) * TTM) - Strike * torch.exp(rate * TTM)
+
 
 
 
